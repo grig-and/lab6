@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.net.BindException;
 import java.net.InetSocketAddress;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 
@@ -15,7 +16,7 @@ public class NetManager {
     private ServerSocketChannel ssc;
     private SocketChannel sc;
     private Selector selector;
-    private static final Logger log = LogManager.getLogger();
+    private static Log log = new Log();
 
     public NetManager(int port) {
         this.port = port;
@@ -33,11 +34,14 @@ public class NetManager {
             ssc.configureBlocking(false);
             selector = Selector.open();
             ssc.register(selector, OP_ACCEPT);
-        } catch (BindException e) {
+        } catch (SocketException e) {
             log.error("Порт занят, необходимо выбрать другой");
             System.exit(1);
+        }catch (IllegalArgumentException e) {
+            log.error("Неверно указан порт");
+            System.exit(1);
         } catch (IOException e) {
-            log.error(e.getStackTrace());
+            e.printStackTrace();
             log.error("Ошибка при запуске сервера");
         }
     }

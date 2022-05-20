@@ -25,7 +25,7 @@ import java.util.TreeMap;
 public class FileManager {
     private TreeMap<String, Movie> movies;
     private String src;
-    private static final Logger log = LogManager.getLogger();
+    private static Log log = new Log();
 
     /**
      * Constructor
@@ -116,7 +116,7 @@ public class FileManager {
         } catch (IOException e) {
             log.error("Ошибка записи");
         } catch (Error e) {
-            log.error(e.getStackTrace());
+            log.error(e.getStackTrace().toString());
         }
     }
 }
