@@ -16,9 +16,17 @@ public class NetManager {
     public OutputStream os;
     public InputStream is;
 
+
+    private static NetManager net;
+
     public NetManager(InetAddress host, int port) {
         this.host = host;
         this.port = port;
+        this.net = this;
+    }
+
+    public static NetManager get() {
+        return net;
     }
 
     public boolean connect() {
@@ -33,9 +41,9 @@ public class NetManager {
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println("\u001B[31m" + "Неверно указан порт" + "\u001B[0m");
+            System.exit(1);
             return false;
-        }
-        catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException e) {
 //            e.printStackTrace();
 //            System.out.println("\u001B[31m" + "Сервер наелся запросов и спит" + "\u001B[0m");
             return false;
@@ -74,5 +82,11 @@ public class NetManager {
         os.close();
         is.close();
         sock.close();
+    }
+
+    public String exchange(Request res) throws NetException, IOException, ClassNotFoundException {
+        this.send(res);
+        String msg = ((Response) this.read()).getMsg();
+        return msg;
     }
 }

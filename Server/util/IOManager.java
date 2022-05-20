@@ -43,7 +43,7 @@ public class IOManager {
      * @return parameter
      */
     public static String prompt(String msg) {
-        String line;
+        String line = null;
         System.out.println("prompt" + msg);
         try {
             line = file.readLine();
@@ -53,8 +53,6 @@ public class IOManager {
             System.exit(0);
             return null;
         } catch (IOException e) {
-            System.out.println(e.getStackTrace());
-            return "ERRRR";
         }
         System.out.println("line"+line);
         return line.trim();

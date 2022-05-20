@@ -15,7 +15,6 @@ public class Main {
         NetManager net = null;
         try {
             net = new NetManager(InetAddress.getLoopbackAddress(), Integer.parseInt(args[0]));
-//            net = new NetManager(InetAddress.getLoopbackAddress(), 6789);
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             System.out.println("Неверно указан порт");
             System.exit(1);
@@ -34,11 +33,11 @@ public class Main {
 
                 res = cm.run(arr);
                 if (res != null) {
-                    exchange(res, net);
+                    System.out.println(net.exchange(res));
                 }
                 if (arr[0].equals("exit")) {
                     net.close();
-                    System.exit(0);
+                    break;
                 }
             } catch (NoSuchElementException e) {
                 System.out.println("\u001B[31m" + "Нажат Ctrl+D - выхожу из программы" + "\u001B[0m");
@@ -62,19 +61,9 @@ public class Main {
         }
         try {
             System.out.println("Повторная отправка");
-            exchange(res, net);
+            net.exchange(res);
         } catch (NetException | ClassNotFoundException | IOException ex) {
             System.out.println("\u001B[31m" + "Ошибка при повторной отправке" + "\u001B[0m");
-        }
-    }
-
-    private static void exchange(Request res, NetManager net) throws NetException, IOException, ClassNotFoundException {
-        net.send(res);
-
-        String msg = ((Response) net.read()).getMsg();
-
-        if (msg != null) {
-            System.out.println(msg);
         }
     }
 
