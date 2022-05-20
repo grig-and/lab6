@@ -1,4 +1,5 @@
 package commands;
+import exceptions.InvalidArgumentException;
 import util.Request;
 
 /**
@@ -9,7 +10,7 @@ public class SumOfOscarsCount extends Commandable {
     final public static String description = "вывести сумму значений поля oscarsCount для всех элементов коллекции";
 
     @Override
-    public Request run(String arg) {
+    public Request getRequest(String arg) {
         return new Request(name);
     }
 

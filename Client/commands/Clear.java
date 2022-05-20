@@ -1,5 +1,7 @@
 package commands;
 
+import content.Movie;
+import exceptions.InvalidArgumentException;
 import util.Request;
 
 /**
@@ -10,7 +12,7 @@ public class Clear extends Commandable {
     final public static String description = "очистить коллекцию";
 
     @Override
-    public Request run(String arg) {
+    public Request getRequest(String arg) {
         return new Request(name);
     }
 

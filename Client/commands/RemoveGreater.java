@@ -13,7 +13,7 @@ public class RemoveGreater extends Commandable {
 
 
     @Override
-    public Request run(String arg) throws InvalidArgumentException {
+    public Request getRequest(String arg) throws InvalidArgumentException {
         return new Request(name, null, Movie.prompt());
     }
 

@@ -1,5 +1,6 @@
 package commands;
 
+import content.Movie;
 import content.MovieGenre;
 import exceptions.InvalidArgumentException;
 import exceptions.InvalidParameterException;
@@ -13,7 +14,7 @@ public class FilterGreaterThanGenre extends Commandable {
     final public static String description = "вывести элементы, значение поля genre которых больше заданного";
 
     @Override
-    public Request run(String arg) throws InvalidArgumentException {
+    public Request getRequest(String arg) throws InvalidArgumentException {
         if (arg == null) {
             throw new InvalidArgumentException("Необходим параметр - жанр");
         }

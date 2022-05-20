@@ -1,5 +1,6 @@
 package commands;
 
+import content.Movie;
 import exceptions.InvalidArgumentException;
 import util.Request;
 
@@ -11,7 +12,7 @@ public class RemoveKey extends Commandable {
     final public static String description = "удалить элемент из коллекции по его ключу";
 
     @Override
-    public Request run(String arg) throws InvalidArgumentException {
+    public Request getRequest(String arg) throws InvalidArgumentException {
         if (arg == null) {
             throw new InvalidArgumentException("Эта команда требует аргумент: ключ элемента коллекции");
         }

@@ -11,7 +11,7 @@ public class RemoveGreaterKey extends Commandable {
     final public static String description = "удалить из коллекции все элементы, ключ которых превышает заданный";
 
     @Override
-    public Request run(String arg) throws InvalidArgumentException {
+    public Request getRequest(String arg) throws InvalidArgumentException {
         if (arg == null) {
             throw new InvalidArgumentException("Эта команда требует аргумент: ключ элемента коллекции");
         }

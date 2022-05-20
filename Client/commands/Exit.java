@@ -1,5 +1,7 @@
 package commands;
 
+import content.Movie;
+import exceptions.InvalidArgumentException;
 import util.Request;
 
 /**
@@ -10,7 +12,7 @@ public class Exit extends Commandable {
     final public static String description = "завершить программу";
 
     @Override
-    public Request run(String arg) {
+    public Request getRequest(String arg) {
         System.out.println("Выход из программы");
         return new Request("exit");
     }

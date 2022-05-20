@@ -12,7 +12,7 @@ public class ReplaceIfGreater extends Commandable{
     final public static String description = "заменить значение по ключу, если новое значение больше старого";
 
     @Override
-    public Request run(String arg) throws InvalidArgumentException {
+    public Request getRequest(String arg) throws InvalidArgumentException {
 
         if (arg == null) {
             throw new InvalidArgumentException("Эта команда требует аргумент: ключ элемента коллекции");

@@ -1,4 +1,5 @@
 package commands;
+import exceptions.InvalidArgumentException;
 import util.Request;
 
 /**
@@ -9,7 +10,7 @@ public class Show extends Commandable {
     final public static String description = "вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
 
     @Override
-    public Request run(String arg) {
+    public Request getRequest(String arg) {
         return new Request(name);
     }
 

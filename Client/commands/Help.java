@@ -1,5 +1,7 @@
 package commands;
 
+import content.Movie;
+import exceptions.InvalidArgumentException;
 import util.Request;
 
 import java.util.Map;
@@ -26,7 +28,7 @@ public class Help extends Commandable {
     }
 
     @Override
-    public Request run(String arg) {
+    public Request getRequest(String arg) {
         for (String key : commands.keySet()) {
             System.out.println("\u001B[34m" + key + ": " + "\u001B[0m" + commands.get(key).getDescription());
         }
