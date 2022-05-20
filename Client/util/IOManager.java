@@ -1,5 +1,6 @@
 package util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -12,13 +13,45 @@ public class IOManager {
         System.out.print(str);
     }
 
+    public static boolean isFileMode() {
+        return isFileMode;
+    }
+
+    public static void setIsFileMode(boolean isFileMode) {
+        IOManager.isFileMode = isFileMode;
+    }
+
+    private static boolean isFileMode = false;
+    private static BufferedReader file;
+
+    public static void setFileReader(BufferedReader reader) {
+        file = reader;
+    }
+
+
+    public static String nextLine() {
+        try {
+            if (isFileMode) {
+                return file.readLine();
+            } else {
+                Scanner scanner = new Scanner(System.in);
+                return scanner.nextLine();
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Нажат Ctrl+D - выхожу из программы");
+            System.exit(0);
+
+        } catch (IOException e) {
+        }
+        return null;
+    }
+
     /**
      * @return array of user entered arguments
      */
     public static String[] promptArgs() {
-        Scanner scanner = new Scanner(System.in);
         String line = "";
-        line = scanner.nextLine();
+        line = nextLine();
         return parseArgs(line);
     }
 
@@ -35,17 +68,9 @@ public class IOManager {
      * @return parameter
      */
     public static String prompt(String msg) {
-        System.out.print(msg);
-        Scanner scanner = new Scanner(System.in);
+        if (!isFileMode) System.out.print(msg);
         String line = "";
-        try {
-            line = scanner.nextLine();
-
-        } catch (NoSuchElementException e) {
-            System.out.println("Нажат Ctrl+D - выхожу из программы");
-            System.exit(0);
-            return null;
-        }
+        line = nextLine();
         return line.trim();
     }
 

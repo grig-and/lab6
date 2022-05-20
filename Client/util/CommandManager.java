@@ -22,7 +22,7 @@ public class CommandManager {
         commands.put(Update.name, new Update());
         commands.put(RemoveKey.name, new RemoveKey());
         commands.put(Clear.name, new Clear());
-        commands.put(ExecuteScript.name, new ExecuteScript());
+        commands.put(ExecuteScript.name, new ExecuteScript(this));
         commands.put(Exit.name, new Exit());
         commands.put(RemoveGreater.name, new RemoveGreater());
         commands.put(ReplaceIfGreater.name, new ReplaceIfGreater());
@@ -39,7 +39,7 @@ public class CommandManager {
      */
     public Request run(String[] args) {
         try {
-            return commands.get(args[0]).run(args.length > 1 ? args[1] : null);
+            return commands.get(args[0]).getRequest(args.length > 1 ? args[1] : null);
         } catch (NullPointerException e) {
             if (!args[0].isEmpty()) {
                 System.out.println("\u001B[31m" + "Нет такой команды. Вызовите help для справки по командам." + "\u001B[0m");
@@ -50,4 +50,5 @@ public class CommandManager {
             return null;
         }
     }
+
 }
