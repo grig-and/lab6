@@ -13,18 +13,17 @@ import org.apache.logging.log4j.Logger;
  * Main class
  */
 public class Main {
-    private static final Logger log = LogManager.getLogger();
+    private static Log log = new Log();
 
     public static void main(String[] args) throws IOException {
         Telegram tg = new Telegram();
-        log.info("Server started");
         tg.sendMessage("Server started");
         tg.sendMessage("Этот бот логгирует все подключения и команды. Также может выполнять команды, не требующие ввода объекта");
 
         NetManager net = null;
         try {
             net = new NetManager(Integer.parseInt(args[1]));
-//            net = new NetManager();
+//            net = new NetManager(33508);
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             log.error("Неверный формат порта");
             tg.sendMessage("port_error");
@@ -56,7 +55,7 @@ public class Main {
             }
 
             String[] cmd = tg.getCMD();
-            if (cmd != null){
+            if (cmd != null) {
                 tg.sendMessage(commandManager.run(cmd));
             }
 

@@ -8,7 +8,7 @@ import java.nio.channels.SelectionKey;
 
 public class Accepter {
     private NetManager net;
-    private static final Logger log = LogManager.getLogger();
+    private static Log log = new Log();
     private static Telegram tg = new Telegram();
 
     public Accepter(NetManager net) {

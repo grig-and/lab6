@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class CommandManager {
     private Map<String, Commandable> commands = new HashMap<>();
-    private static final Logger log = LogManager.getLogger();
+    private static Log log = new Log();
     Telegram tg = new Telegram();
 
     public CommandManager(CollectionManager collectionManager) {
@@ -24,7 +24,6 @@ public class CommandManager {
         commands.put("remove_key", new RemoveKey(collectionManager));
         commands.put("clear", new Clear(collectionManager));
         commands.put("save", new Save(collectionManager));
-        commands.put("execute_script", new ExecuteScript(this));
         commands.put("exit", new Exit(collectionManager));
         commands.put("remove_greater", new RemoveGreater(collectionManager));
         commands.put("replace_if_greater", new ReplaceIfGreater(collectionManager));
