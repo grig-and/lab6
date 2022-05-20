@@ -37,7 +37,6 @@ public class Person implements Serializable {
      * @return Person from user input
      */
     public static Person prompt() {
-        System.out.println("Оператор:");
         String nameP = promptName();
         long height = promptHeight();
         String passportID = promptPID();
@@ -82,7 +81,7 @@ public class Person implements Serializable {
      */
     private static String promptName() {
         try {
-            return parseName(IOManager.prompt(" Имя: "));
+            return parseName(IOManager.prompt("Оператор:\n Имя: "));
         } catch (InvalidParameterException e) {
             System.out.println(e.getMessage());
             return promptName();

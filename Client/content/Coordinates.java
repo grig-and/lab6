@@ -42,7 +42,6 @@ public class Coordinates implements Serializable {
      * @return coordinates instance requested from user
      */
     public static Coordinates prompt() {
-        System.out.println("Координаты: ");
         float x = promptX();
         Integer y = promptY();
         return new Coordinates(x, y);
@@ -52,9 +51,8 @@ public class Coordinates implements Serializable {
      * @return X coordinate requested from user
      */
     private static float promptX() {
-        System.out.println(" Введите число");
         try {
-            return parseX(IOManager.prompt(" x: "));
+            return parseX(IOManager.prompt("Координаты: \n Введите число\n x: "));
         } catch (InvalidParameterException e) {
             System.out.println(e.getMessage());
             return promptX();
@@ -78,9 +76,8 @@ public class Coordinates implements Serializable {
      * @return Y coordinate requested from user
      */
     private static Integer promptY() {
-        System.out.println(" Введите число");
         try {
-            return parseY(IOManager.prompt(" y (целое число): "));
+            return parseY(IOManager.prompt(" Введите число\n y (целое число): "));
         } catch (InvalidParameterException e) {
             System.out.println(e.getMessage());
             return promptY();
