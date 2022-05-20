@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Telegram {
     private String token = "";
@@ -50,13 +52,17 @@ public class Telegram {
             try {
                 id = Long.parseLong(match(resp, "\"id\":(.*?),\""));
                 Long msgId = Long.parseLong(match(resp, "\"message_id\":(.*?),\"from"));
-                if (lastMsgId == 0){
+                if (lastMsgId == 0) {
                     lastMsgId = msgId;
                     return null;
                 }
                 if (msgId > lastMsgId) {
                     lastMsgId = msgId;
-                    return match(resp, "\"text\":\"(.*?)\"}}").split(" ");
+                    String[] res = match(resp, "\"text\":\"(.*?)\"}}").split(" ");
+                    for (int i = 0; i < res.length; i++) {
+                        res[i] = res[i].toLowerCase();
+                    }
+                    return res;
                 }
             } catch (NumberFormatException e) {
 
