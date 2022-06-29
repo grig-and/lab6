@@ -21,6 +21,7 @@ public class Sender {
             sc.write(ByteBuffer.wrap(baos.toByteArray()));
             log.info(resp);
         } catch (IOException e) {
+          log.error(e.getStackTrace());
         }
     }
 }
