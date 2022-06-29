@@ -17,7 +17,7 @@ public class Main {
             net = new NetManager(InetAddress.getLoopbackAddress(), Integer.parseInt(args[0]));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             System.out.println("Неверно указан порт");
-            System.exit(1);
+            return;
         }
         if (!net.connect()) {
             System.out.println("\u001B[31m" + "Сервер не отвечает" + "\u001B[0m");
@@ -41,7 +41,7 @@ public class Main {
                 }
             } catch (NoSuchElementException e) {
                 System.out.println("\u001B[31m" + "Нажат Ctrl+D - выхожу из программы" + "\u001B[0m");
-                System.exit(0);
+                return;
             } catch (NetException e) {
                 System.out.println("\u001B[31m" + e.getMessage() + "\u001B[0m");
                 resend(res, net);

@@ -28,7 +28,7 @@ public class Main {
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             log.error("Неверный формат порта");
             tg.sendMessage("port_error");
-            System.exit(1);
+            return;
         }
         net.init();
         FileManager fileManager;
@@ -44,7 +44,7 @@ public class Main {
         } catch (ArrayIndexOutOfBoundsException e) {
             log.error("Не передан путь");
             tg.sendMessage("path_error");
-            System.exit(1);
+            return;
         }
 
         Request req;
