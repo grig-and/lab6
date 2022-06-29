@@ -9,6 +9,8 @@ import java.util.Scanner;
  * IO Manager
  */
 public class IOManager {
+    private static Logger log = LogManager.getLogger();
+
     public static void out(String str) {
         System.out.print(str);
     }
@@ -42,6 +44,7 @@ public class IOManager {
             System.exit(0);
 
         } catch (IOException e) {
+          log.error(e.getStackTrace());
         }
         return null;
     }

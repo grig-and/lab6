@@ -53,6 +53,7 @@ public class IOManager {
             System.exit(0);
             return null;
         } catch (IOException e) {
+          log.error(e.getStackTrace());
         }
         System.out.println("line"+line);
         return line.trim();
