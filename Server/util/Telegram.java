@@ -8,11 +8,14 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Telegram {
     private String token = "";
     private static long id = 491117935;
     private static long lastMsgId = 0;
+    private final Logger log = LogManager.getLogger();
 
     public void sendMessage(String msg) {
         if (msg == null) return;
@@ -65,10 +68,10 @@ public class Telegram {
                     return res;
                 }
             } catch (NumberFormatException e) {
-
+              log.error(e.getMessage());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+          log.error(e.getMessage());
         }
         return null;
     }
