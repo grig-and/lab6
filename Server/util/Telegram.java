@@ -10,9 +10,18 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Telegram {
-    private String token = "";
+    private static String token = "";
     private static long id = 491117935;
     private static long lastMsgId = 0;
+
+    public static void init() { 
+      try {
+        Scanner sc = new Scanner(new FileReader("tg.txt"));
+        token = sc.nextLine().trim();
+      } catch (FileNotFoundException | NoSuchElementException e) {
+        e.printStackTrace();
+      }
+    }
 
     public void sendMessage(String msg) {
         if (msg == null) return;

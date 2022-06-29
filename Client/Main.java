@@ -13,6 +13,8 @@ public class Main {
         CommandManager cm = new CommandManager();
         IOManager io = new IOManager();
         NetManager net = null;
+        Telegram.init();
+        
         try {
             net = new NetManager(InetAddress.getLoopbackAddress(), Integer.parseInt(args[0]));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
